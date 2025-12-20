@@ -78,8 +78,22 @@ const Footer = () => {
           <Divider />
         </Box>
 
-        <Stack marginTop="33px" alignItems="center">
+        <Stack marginTop="33px" alignItems="center" spacing={1}>
           <Typography variant="caption" color="common.white">{footerData.copyright_text}</Typography>
+          <Link
+            href="https://github.com/Absensy/web-development"
+            target="_blank"
+            rel="noopener noreferrer"
+            underline="hover"
+            color="common.white"
+            sx={{ 
+              fontSize: '12px',
+              opacity: 0.8,
+              '&:hover': { opacity: 1 }
+            }}
+          >
+            Исходный код на GitHub
+          </Link>
         </Stack>
 
       </Container>

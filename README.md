@@ -2,6 +2,9 @@
 
 Современный веб-сайт для компании "Гранит Памяти", специализирующейся на изготовлении памятников и ритуальных услуг.
 
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Absensy/web-development)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 ## 🚀 Технологии
 
 - **Next.js 15** - React фреймворк
@@ -32,8 +35,8 @@
 
 ### 1. Клонирование репозитория
 ```bash
-git clone <repository-url>
-cd granit
+git clone https://github.com/Absensy/web-development.git
+cd web-development
 ```
 
 ### 2. Установка зависимостей
@@ -125,10 +128,11 @@ src/
    npm run build
    ```
 
-3. **Для GitHub Pages** (статический экспорт):
-   - Раскомментируйте `output: 'export'` в `next.config.ts`
-   - Запустите `npm run export`
-   - Загрузите папку `out/` на GitHub Pages
+3. **Для GitHub Pages** (автоматический деплой):
+   - Настройка уже выполнена через GitHub Actions
+   - При пуше в ветку `main` автоматически происходит деплой
+   - Сайт будет доступен по адресу: `https://absensy.github.io/web-development`
+   - Настройте GitHub Pages в настройках репозитория: Settings → Pages → Source: GitHub Actions
 
 **Важно**: 
 - SQLite база данных (`*.db` файлы) не коммитятся в Git (добавлены в `.gitignore`)
@@ -174,6 +178,12 @@ npm run type-check
 - `style:` - форматирование кода
 - `refactor:` - рефакторинг
 - `test:` - добавление тестов
+
+## 🔗 Ссылки
+
+- **GitHub репозиторий**: [https://github.com/Absensy/web-development](https://github.com/Absensy/web-development)
+- **GitHub Pages** (если настроено): [https://absensy.github.io/web-development](https://absensy.github.io/web-development)
+- **Issues**: [https://github.com/Absensy/web-development/issues](https://github.com/Absensy/web-development/issues)
 
 ## 📄 Лицензия
 

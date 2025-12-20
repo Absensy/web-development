@@ -13,9 +13,9 @@ const nextConfig: NextConfig = {
     // Для локального хостинга разрешаем неоптимизированные изображения
     unoptimized: process.env.NODE_ENV === 'production' && process.env.STATIC_EXPORT === 'true',
   },
-  // Опция для статического экспорта (раскомментируйте если нужно)
-  // output: 'export',
-  // trailingSlash: true,
+  // Опция для статического экспорта (для GitHub Pages)
+  output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
+  trailingSlash: process.env.STATIC_EXPORT === 'true',
 };
 
 export default nextConfig;
