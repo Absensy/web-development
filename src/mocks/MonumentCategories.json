@@ -1,0 +1,43 @@
+        {
+    "monumentCategories": [
+        {
+            "id": 1,
+            "name": "Двойные памятники",
+            "price": 780,
+            "image": "/images/doubleMonuments.jpg",
+            "discount": 31
+        },
+        {
+            "id": 2,
+            "name": "Двойные памятники",
+            "price": 780,
+            "image": "/images/doubleMonuments.jpg",
+            "discount": 31
+        },
+        {
+            "id": 3,
+            "name": "Двойные памятники",
+            "price": 780,
+            "image": "/images/doubleMonuments.jpg",
+            "discount": 31
+        },
+        {
+            "id": 4,
+            "name": "Двойные памятники",
+            "price": 780,
+            "image": "/images/doubleMonuments.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Двойные памятники",
+            "price": 780,
+            "image": "/images/doubleMonuments.jpg"
+        },
+        {
+            "id": 6,
+            "name": "Двойные памятники",
+            "price": 780,
+            "image": "/images/doubleMonuments.jpg"
+        }
+    ]
+}

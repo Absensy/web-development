@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id               Int       @id @default(autoincrement())
+  name             String
+  price_from       Float
+  photo            String
+  discount         Int?
+  discounted_price Float?
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+  is_active        Boolean   @default(true)
+  products         Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id                Int       @id @default(autoincrement())
+  name              String
+  short_description String
+  full_description  String
+  materials         String
+  production_time   String
+  price             Float
+  discount          Int?
+  discounted_price  Float?
+  image             String
+  category_id       Int?
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+  is_new            Boolean   @default(false)
+  is_popular        Boolean   @default(false)
+  is_active         Boolean   @default(true)
+  category          Category? @relation(fields: [category_id], references: [id])
+
+  @@map("products")
+}
+
+model ContactInfo {
+  id            Int      @id @default(autoincrement())
+  address       String
+  phone         String
+  email         String
+  instagram     String?
+  working_hours String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("contact_info")
+}
+
+model ExamplesOurWork {
+  id          Int      @id @default(autoincrement())
+  title       String
+  image       String
+  dimensions  String
+  date        String
+  description String?
+  is_active   Boolean  @default(true)
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("examples_our_work")
+}
+
+model Content {
+  id         Int      @id @default(autoincrement())
+  section    String   @unique
+  data       Json
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("content")
+}

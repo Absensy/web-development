@@ -1,0 +1,422 @@
+[
+  {
+    "id": 9,
+    "name": "Надгробие \"Мир\"",
+    "short_description": "Надгробие с голубем мира",
+    "full_description": "Трогательное надгробие с изображением голубя мира и молитвенной надписью. Символизирует мир и покой.",
+    "materials": "Белый мрамор, Золотая фольга",
+    "production_time": "8-12 дней",
+    "price": 1700,
+    "discount": 15,
+    "discounted_price": 1445,
+    "image": "/images/gravestone.jpg",
+    "category_id": 5,
+    "created_at": "2025-12-20T08:50:42.623Z",
+    "updated_at": "2025-12-20T08:50:42.623Z",
+    "is_new": false,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Надгробные плиты"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Плита \"Эко\"",
+    "short_description": "Экологичная гранитная плита",
+    "full_description": "Экологически чистая гранитная плита из натурального камня. Создана с заботой об окружающей среде.",
+    "materials": "Серый гранит",
+    "production_time": "3-5 дней",
+    "price": 800,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/graniteSlab.jpg",
+    "category_id": 4,
+    "created_at": "2025-12-20T08:50:42.618Z",
+    "updated_at": "2025-12-20T08:50:42.618Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Гранитные плиты"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Мемориал \"Слава\"",
+    "short_description": "Мемориальный комплекс с вечным огнем",
+    "full_description": "Величественный мемориальный комплекс с вечным огнем и декоративными элементами. Создан для увековечивания памяти героев.",
+    "materials": "Красный гранит, Мрамор, Бронза, Металл",
+    "production_time": "35-50 дней",
+    "price": 7500,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/memorialMonument.jpg",
+    "category_id": 3,
+    "created_at": "2025-12-20T08:50:42.613Z",
+    "updated_at": "2025-12-20T08:50:42.613Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Мемориальные комплексы"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Памятник \"Единство\"",
+    "short_description": "Двойной памятник с общим основанием",
+    "full_description": "Уникальный двойной памятник с общим основанием и раздельными стелами. Символизирует единство и вечную любовь.",
+    "materials": "Серый гранит, Мрамор",
+    "production_time": "16-22 дня",
+    "price": 4100,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/doubleMonument.jpg",
+    "category_id": 1,
+    "created_at": "2025-12-20T08:50:42.608Z",
+    "updated_at": "2025-12-20T08:50:42.608Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Памятники двойные"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Памятник \"Современник\"",
+    "short_description": "Современный памятник с LED-подсветкой",
+    "full_description": "Инновационный памятник с встроенной LED-подсветкой и современным дизайном. Создан для тех, кто ценит современные технологии.",
+    "materials": "Черный гранит, Стекло, Металл",
+    "production_time": "14-18 дней",
+    "price": 4200,
+    "discount": 20,
+    "discounted_price": 3360,
+    "image": "/images/singleMonument.jpg",
+    "category_id": 2,
+    "created_at": "2025-12-20T08:50:42.602Z",
+    "updated_at": "2025-12-20T08:50:42.602Z",
+    "is_new": true,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Памятники одинарные"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Надгробие \"Надежда\"",
+    "short_description": "Надгробие с ангелом-хранителем",
+    "full_description": "Трогательное надгробие с изображением ангела-хранителя и молитвенной надписью. Создано для тех, кто верит в вечную жизнь.",
+    "materials": "Белый мрамор, Золотая фольга",
+    "production_time": "7-10 дней",
+    "price": 1800,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/gravestone.jpg",
+    "category_id": 5,
+    "created_at": "2025-12-20T08:50:42.596Z",
+    "updated_at": "2025-12-20T08:50:42.596Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Надгробные плиты"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Плита \"Классик\"",
+    "short_description": "Классическая гранитная плита",
+    "full_description": "Традиционная гранитная плита в классическом стиле с простыми линиями и элегантным дизайном. Подходит для любого типа захоронения.",
+    "materials": "Серый гранит",
+    "production_time": "4-6 дней",
+    "price": 950,
+    "discount": 10,
+    "discounted_price": 855,
+    "image": "/images/graniteSlab.jpg",
+    "category_id": 4,
+    "created_at": "2025-12-20T08:50:42.591Z",
+    "updated_at": "2025-12-20T08:50:42.591Z",
+    "is_new": false,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Гранитные плиты"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Мемориал \"Величие\"",
+    "short_description": "Монументальный мемориальный комплекс",
+    "full_description": "Величественный мемориальный комплекс с декоративными колоннами, барельефами и скульптурными элементами. Создан для увековечивания памяти великих людей.",
+    "materials": "Красный гранит, Мрамор, Бронза, Золотая фольга",
+    "production_time": "30-45 дней",
+    "price": 6500,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/memorialMonument.jpg",
+    "category_id": 3,
+    "created_at": "2025-12-20T08:50:42.587Z",
+    "updated_at": "2025-12-20T08:50:42.587Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Мемориальные комплексы"
+    }
+  },
+  {
+    "id": 1,
+    "name": "Памятник \"Элегант\"",
+    "short_description": "Элегантный памятник из белого мрамора",
+    "full_description": "Утонченный памятник из белого мрамора с изящными линиями и декоративными элементами. Создан для тех, кто ценит красоту и изысканность.",
+    "materials": "Белый мрамор, Бронза",
+    "production_time": "8-12 дней",
+    "price": 2200,
+    "discount": 12,
+    "discounted_price": 1936,
+    "image": "/images/singleMonument.jpg",
+    "category_id": 2,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Памятники одинарные"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Надгробие \"Вера\"",
+    "short_description": "Надгробие с православным крестом",
+    "full_description": "Традиционное надгробие с выгравированным православным крестом и молитвенной надписью. Создано в соответствии с православными традициями.",
+    "materials": "Белый мрамор, Золотая фольга",
+    "production_time": "6-8 дней",
+    "price": 1600,
+    "discount": 8,
+    "discounted_price": 1472,
+    "image": "/images/gravestone.jpg",
+    "category_id": 5,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Надгробные плиты"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Памятник \"Семейный\"",
+    "short_description": "Двойной памятник для семейных захоронений",
+    "full_description": "Просторный двойной памятник из серого гранита с возможностью размещения двух имен. Включает общую эпитафию и декоративные элементы. Идеально подходит для семейных захоронений.",
+    "materials": "Серый гранит, Бронза",
+    "production_time": "10-14 дней",
+    "price": 2800,
+    "discount": 15,
+    "discounted_price": 2380,
+    "image": "/images/doubleMonument.jpg",
+    "category_id": 1,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Памятники двойные"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Памятник \"Премиум\"",
+    "short_description": "Премиум памятник из черного гранита",
+    "full_description": "Эксклюзивный памятник из высококачественного черного гранита с золотой гравировкой и декоративными элементами. Создан для особых случаев.",
+    "materials": "Черный гранит, Золотая фольга, Бронза",
+    "production_time": "10-14 дней",
+    "price": 3500,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/singleMonument.jpg",
+    "category_id": 2,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Памятники одинарные"
+    }
+  },
+  {
+    "id": 12,
+    "name": "Памятник \"Дуэт\"",
+    "short_description": "Двойной памятник в современном стиле",
+    "full_description": "Современный двойной памятник с минималистичным дизайном. Идеально подходит для молодых семей, предпочитающих современный стиль.",
+    "materials": "Черный гранит, Стекло",
+    "production_time": "12-16 дней",
+    "price": 3200,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/doubleMonument.jpg",
+    "category_id": 1,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Памятники двойные"
+    }
+  },
+  {
+    "id": 13,
+    "name": "Плита \"Минимал\"",
+    "short_description": "Минималистичная гранитная плита",
+    "full_description": "Простая и элегантная гранитная плита в минималистичном стиле. Подходит для тех, кто предпочитает простоту и лаконичность.",
+    "materials": "Серый гранит",
+    "production_time": "2-4 дня",
+    "price": 750,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/graniteSlab.jpg",
+    "category_id": 4,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Гранитные плиты"
+    }
+  },
+  {
+    "id": 15,
+    "name": "Памятник \"Классик\"",
+    "short_description": "Классический памятник из черного гранита с золотой гравировкой",
+    "full_description": "Элегантный памятник в классическом стиле из высококачественного черного гранита. Включает золотую гравировку имени и дат, а также декоративные элементы. Подходит для любого типа захоронения.",
+    "materials": "Черный гранит, Золотая фольга",
+    "production_time": "7-10 дней",
+    "price": 1800,
+    "discount": 10,
+    "discounted_price": 1620,
+    "image": "/images/singleMonument.jpg",
+    "category_id": 2,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Памятники одинарные"
+    }
+  },
+  {
+    "id": 16,
+    "name": "Памятник \"Гармония\"",
+    "short_description": "Двойной памятник в стиле ар-деко",
+    "full_description": "Элегантный двойной памятник в стиле ар-деко с геометрическими узорами и декоративными элементами. Создан для ценителей искусства.",
+    "materials": "Серый гранит, Мрамор, Бронза",
+    "production_time": "15-20 дней",
+    "price": 3800,
+    "discount": 18,
+    "discounted_price": 3116,
+    "image": "/images/doubleMonument.jpg",
+    "category_id": 1,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Памятники двойные"
+    }
+  },
+  {
+    "id": 17,
+    "name": "Плита \"Простота\"",
+    "short_description": "Простая гранитная плита для скромных захоронений",
+    "full_description": "Минималистичная гранитная плита из серого гранита. Чистые линии и простота дизайна подчеркивают достоинство и скромность. Подходит для тех, кто предпочитает простоту и элегантность.",
+    "materials": "Серый гранит",
+    "production_time": "3-5 дней",
+    "price": 900,
+    "discount": 5,
+    "discounted_price": 855,
+    "image": "/images/graniteSlab.jpg",
+    "category_id": 4,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": true,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Гранитные плиты"
+    }
+  },
+  {
+    "id": 18,
+    "name": "Мемориал \"Память\"",
+    "short_description": "Мемориальный комплекс с колоннами",
+    "full_description": "Величественный мемориальный комплекс с декоративными колоннами и барельефами. Создан для увековечивания памяти выдающихся людей.",
+    "materials": "Красный гранит, Мрамор",
+    "production_time": "25-35 дней",
+    "price": 5200,
+    "discount": 15,
+    "discounted_price": 4420,
+    "image": "/images/memorialMonument.jpg",
+    "category_id": 3,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Мемориальные комплексы"
+    }
+  },
+  {
+    "id": 19,
+    "name": "Мемориал \"Вечность\"",
+    "short_description": "Монументальный мемориальный комплекс",
+    "full_description": "Величественный мемориальный комплекс из красного гранита с декоративными колоннами и барельефами. Включает постамент, основную стелу и декоративные элементы. Создан для увековечивания памяти особо важных людей.",
+    "materials": "Красный гранит, Мрамор, Бронза",
+    "production_time": "21-30 дней",
+    "price": 4500,
+    "discount": 20,
+    "discounted_price": 3600,
+    "image": "/images/memorialMonument.jpg",
+    "category_id": 3,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": true,
+    "is_active": true,
+    "category": {
+      "name": "Мемориальные комплексы"
+    }
+  },
+  {
+    "id": 20,
+    "name": "Надгробие \"Традиция\"",
+    "short_description": "Традиционное надгробие с религиозными символами",
+    "full_description": "Традиционное надгробие из белого мрамора с выгравированными религиозными символами. Включает крест и молитвенную надпись. Создано в соответствии с православными традициями.",
+    "materials": "Белый мрамор, Золотая фольга",
+    "production_time": "5-7 дней",
+    "price": 1400,
+    "discount": null,
+    "discounted_price": null,
+    "image": "/images/gravestone.jpg",
+    "category_id": 5,
+    "created_at": "2025-12-20T08:50:42.573Z",
+    "updated_at": "2025-12-20T08:50:42.573Z",
+    "is_new": false,
+    "is_popular": false,
+    "is_active": true,
+    "category": {
+      "name": "Надгробные плиты"
+    }
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Памятники двойные",
+    "price_from": 2500,
+    "photo": "/images/doubleMonument.jpg",
+    "discount": 15,
+    "discounted_price": 2125,
+    "created_at": "2025-12-20T08:50:42.533Z",
+    "updated_at": "2025-12-20T08:50:42.533Z",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "name": "Памятники одинарные",
+    "price_from": 1500,
+    "photo": "/images/singleMonument.jpg",
+    "discount": 10,
+    "discounted_price": 1350,
+    "created_at": "2025-12-20T08:50:42.533Z",
+    "updated_at": "2025-12-20T08:50:42.533Z",
+    "is_active": true
+  },
+  {
+    "id": 3,
+    "name": "Мемориальные комплексы",
+    "price_from": 3500,
+    "photo": "/images/memorialMonument.jpg",
+    "discount": null,
+    "discounted_price": null,
+    "created_at": "2025-12-20T08:50:42.533Z",
+    "updated_at": "2025-12-20T08:50:42.533Z",
+    "is_active": true
+  },
+  {
+    "id": 4,
+    "name": "Гранитные плиты",
+    "price_from": 800,
+    "photo": "/images/graniteSlab.jpg",
+    "discount": 5,
+    "discounted_price": 760,
+    "created_at": "2025-12-20T08:50:42.533Z",
+    "updated_at": "2025-12-20T08:50:42.533Z",
+    "is_active": true
+  },
+  {
+    "id": 5,
+    "name": "Надгробные плиты",
+    "price_from": 1200,
+    "photo": "/images/gravestone.jpg",
+    "discount": null,
+    "discounted_price": null,
+    "created_at": "2025-12-20T08:50:42.533Z",
+    "updated_at": "2025-12-20T08:50:42.533Z",
+    "is_active": true
+  }
+]

@@ -1,0 +1,81 @@
+{
+     "CatalogCards": [
+          {
+               "id": 1,
+               "discount": 31,
+               "image": "/images/doubleMonument.jpg",
+               "name": "Двойной памятник",
+               "subtext": "Премиальный черный гранит с индивидуальной гравировкой",
+               "price": 1800,
+               "oldPrice": 2450
+          },
+          {
+               "id": 2,
+               "discount": 0,
+               "image": "/images/GrneyMonument.jpg",
+               "name": "Простая элегантность",
+               "subtext": "Минималистичный дизайн из черного гранита",
+               "price": 1333
+          },
+          {
+               "id": 3,
+               "discount": 15,
+               "image": "/images/doubleMonuments.jpg",
+               "name": "Одиночный памятник",
+               "subtext": "Премиальный черный гранит с индивидуальной гравировкой",
+               "price": 1500,
+               "oldPrice": 1750
+          },
+          {
+               "id": 4,
+               "discount": 25,
+               "image": "/images/memorialMonument.jpg",
+               "name": "Мемориальный памятник",
+               "subtext": "Премиальный черный гранит с индивидуальной гравировкой",
+               "price": 2200,
+               "oldPrice": 2900
+          },
+          {
+               "id": 5,
+               "discount": 25,
+               "image": "/images/memorialMonument.jpg",
+               "name": "Мемориальный памятник",
+               "subtext": "Премиальный черный гранит с индивидуальной гравировкой",
+               "price": 2200,
+               "oldPrice": 2900
+          },
+          {
+               "id": 6,
+               "discount": 25,
+               "image": "/images/memorialMonument.jpg",
+               "name": "Мемориальный памятник",
+               "subtext": "Премиальный черный гранит с индивидуальной гравировкой",
+               "price": 2200
+               
+          },
+          {
+               "id": 7,
+               "discount": 0,
+               "image": "/images/GrneyMonument.jpg",
+               "name": "Простая элегантность",
+               "subtext": "Минималистичный дизайн из черного гранита",
+               "price": 1359
+          },
+          {
+               "id": 8,
+               "discount": 0,
+               "image": "/images/GrneyMonument.jpg",
+               "name": "Простая элегантность",
+               "subtext": "Минималистичный дизайн из черного гранита",
+               "price": 1377
+          },
+          {
+               "id": 9,
+               "discount": 0,
+               "image": "/images/GrneyMonument.jpg",
+               "name": "Простая элегантность",
+               "subtext": "Минималистичный дизайн из черного гранита",
+               "price": 1489
+          }
+     ]
+}
