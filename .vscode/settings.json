@@ -1,0 +1,6 @@
+{
+  "prisma.prismaFmtBinPath": null,
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
+}

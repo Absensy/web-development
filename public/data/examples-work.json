@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "title": "Двойной памятник \"Единство\"",
+    "image": "/images/doubleMonuments.jpg",
+    "dimensions": "110 × 70 × 14 см",
+    "date": "3 июля 2024",
+    "description": null,
+    "is_active": true,
+    "created_at": "2025-12-20T08:50:42.769Z",
+    "updated_at": "2025-12-20T08:50:42.769Z"
+  },
+  {
+    "id": 2,
+    "title": "Мемориальная плита \"Память\"",
+    "image": "/images/memorialMonument.jpg",
+    "dimensions": "60 × 30 × 8 см",
+    "date": "12 июня 2024",
+    "description": null,
+    "is_active": true,
+    "created_at": "2025-12-20T08:50:42.769Z",
+    "updated_at": "2025-12-20T08:50:42.769Z"
+  },
+  {
+    "id": 3,
+    "title": "Детский памятник \"Ангел\"",
+    "image": "/images/memorialMonument.jpg",
+    "dimensions": "50 × 25 × 6 см",
+    "date": "18 августа 2024",
+    "description": null,
+    "is_active": true,
+    "created_at": "2025-12-20T08:50:42.769Z",
+    "updated_at": "2025-12-20T08:50:42.769Z"
+  },
+  {
+    "id": 4,
+    "title": "Мемориальный комплекс \"Вечность\"",
+    "image": "/images/memorialMonument.jpg",
+    "dimensions": "120 × 60 × 15 см",
+    "date": "15 марта 2024",
+    "description": null,
+    "is_active": true,
+    "created_at": "2025-12-20T08:50:42.769Z",
+    "updated_at": "2025-12-20T08:50:42.769Z"
+  },
+  {
+    "id": 5,
+    "title": "Семейный памятник \"Согласие\"",
+    "image": "/images/doubleMonuments.jpg",
+    "dimensions": "100 × 80 × 12 см",
+    "date": "22 апреля 2024",
+    "description": null,
+    "is_active": true,
+    "created_at": "2025-12-20T08:50:42.769Z",
+    "updated_at": "2025-12-20T08:50:42.769Z"
+  },
+  {
+    "id": 6,
+    "title": "Одиночный памятник \"Классик\"",
+    "image": "/images/GrneyMonument.jpg",
+    "dimensions": "80 × 40 × 10 см",
+    "date": "8 мая 2024",
+    "description": null,
+    "is_active": true,
+    "created_at": "2025-12-20T08:50:42.769Z",
+    "updated_at": "2025-12-20T08:50:42.769Z"
+  }
+]
