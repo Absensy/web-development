@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-static';
+
 // GET - получить товар по ID
 export async function GET(
   request: NextRequest,

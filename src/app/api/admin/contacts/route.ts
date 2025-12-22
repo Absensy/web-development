@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-static';
 import { prisma } from '@/lib/prisma';
+
+export const dynamic = 'force-static';
 
 // GET - получить контактную информацию
 export async function GET() {

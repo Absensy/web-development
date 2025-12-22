@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-static';
 import { jwtVerify } from 'jose';
+
+export const dynamic = 'force-static';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback-secret-key';
 
