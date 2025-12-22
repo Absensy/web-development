@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { Box, Typography, TextField, Button, Paper, Grid, Alert, Divider } from '@mui/material';
+import { Box, Typography, TextField, Button, Paper, Alert, Divider, Stack } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import GetAppIcon from '@mui/icons-material/GetApp';
@@ -146,9 +146,9 @@ export default function CookieDemoPage() {
         </Alert>
       )}
 
-      <Grid container spacing={3}>
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={3}>
         {/* Форма ввода данных */}
-        <Grid item xs={12} md={6}>
+        <Box sx={{ flex: 1, minWidth: 0 }}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Форма ввода данных
@@ -220,10 +220,10 @@ export default function CookieDemoPage() {
               </Button>
             </Box>
           </Paper>
-        </Grid>
+        </Box>
 
         {/* Отображение сохраненных данных */}
-        <Grid item xs={12} md={6}>
+        <Box sx={{ flex: 1, minWidth: 0 }}>
           <Paper sx={{ p: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Сохраненные данные из Cookie
@@ -253,8 +253,8 @@ export default function CookieDemoPage() {
               </Typography>
             )}
           </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+      </Stack>
 
       {/* Информация о Cookie */}
       <Paper sx={{ p: 3, mt: 3, backgroundColor: '#f5f5f5' }}>
