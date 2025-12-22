@@ -38,6 +38,9 @@ jobs:
         run: npm run db:export || echo "⚠️ Export skipped - using existing JSON files"
         continue-on-error: true
 
+      - name: Exclude dynamic API routes
+        run: npm run exclude-dynamic-routes
+
       - name: Build
         run: npm run build
         env:

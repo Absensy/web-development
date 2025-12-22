@@ -12,7 +12,8 @@
     "db:generate": "prisma generate",
     "db:export": "tsx scripts/export-data.ts",
     "export": "next build && next export",
-    "test:github": "tsx scripts/test-github-ready.ts"
+    "test:github": "tsx scripts/test-github-ready.ts",
+    "exclude-dynamic-routes": "node scripts/exclude-dynamic-routes.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
