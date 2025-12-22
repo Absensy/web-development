@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export const dynamic = 'force-static';
-
 // Для статического экспорта требуется generateStaticParams
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ id: string }[]> {
   // Возвращаем пустой массив, так как API routes не должны быть статическими
+  // Next.js требует эту функцию для динамических routes при статическом экспорте
   return [];
 }
+
+export const dynamic = 'force-static';
 
 // GET - получить товар по ID
 export async function GET(
