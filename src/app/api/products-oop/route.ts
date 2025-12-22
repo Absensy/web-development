@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-export const dynamic = 'force-static';
 import { ProductService } from '@/lib/services';
-
-export const dynamic = 'force-static';
 import { ProductValidator } from '@/lib/utils';
 
 export const dynamic = 'force-static';
