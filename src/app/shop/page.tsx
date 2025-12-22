@@ -33,19 +33,28 @@ export default function ShopPage() {
         const rawProducts = Array.isArray(data) ? data : (data.products || []);
         
         // Преобразуем данные из JSON в формат компонента
-        const productsData: Product[] = rawProducts.map((item: any) => ({
-          id: item.id,
-          name: item.name,
-          subtext: item.short_description || item.subtext || '',
-          price: item.discounted_price || item.price,
-          oldPrice: item.discount ? item.price : undefined,
-          discount: item.discount,
-          image: item.image || '/images/default.jpg',
-          category: item.category?.name || item.category || '',
-          description: item.full_description || item.description || '',
-          materials: item.materials || '',
-          productionTime: item.production_time || item.productionTime || '',
-        }));
+        const productsData: Product[] = rawProducts.map((item: Record<string, unknown>) => {
+          const categoryData = item.category as { name?: string } | string | undefined;
+          const categoryName = typeof categoryData === 'object' && categoryData !== null 
+            ? categoryData.name 
+            : typeof categoryData === 'string' 
+              ? categoryData 
+              : '';
+          
+          return {
+            id: item.id as number,
+            name: item.name as string,
+            subtext: (item.short_description || item.subtext || '') as string,
+            price: (item.discounted_price || item.price) as number,
+            oldPrice: item.discount ? (item.price as number) : undefined,
+            discount: item.discount as number | undefined,
+            image: (item.image || '/images/default.jpg') as string,
+            category: categoryName,
+            description: (item.full_description || item.description || '') as string,
+            materials: (item.materials || '') as string,
+            productionTime: (item.production_time || item.productionTime || '') as string,
+          };
+        });
         
         setProducts(productsData);
         setLoading(false);
@@ -65,7 +74,7 @@ export default function ShopPage() {
       oldPrice: product.oldPrice,
       discount: product.discount,
       image: product.image,
-      subtext: product.subtext,
+      subtext: product.subtext || '',
     });
   };
 

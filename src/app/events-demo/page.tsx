@@ -10,8 +10,7 @@ import {
   Button,
   TextField,
   Card,
-  CardContent,
-  Divider
+  CardContent
 } from '@mui/material';
 
 export default function EventsDemoPage() {

@@ -298,7 +298,7 @@ export default function OOPDemoPage() {
     isPaused: false,
     gameOver: false
   });
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
   // Инициализация игры
@@ -351,7 +351,7 @@ export default function OOPDemoPage() {
         // Преобразуем данные в объекты Product (демонстрация ООП)
         const productsList = productsData
           .slice(0, 3) // Показываем только 3
-          .map((data: any) => new Product(data));
+          .map((data: Record<string, unknown>) => new Product(data));
         
         setProducts(productsList);
       } catch (error) {
@@ -519,12 +519,12 @@ export default function OOPDemoPage() {
                         <Box sx={{ mt: 1, p: 1.5, bgcolor: 'info.light', borderRadius: 1 }}>
                           <Typography variant="caption" component="div" sx={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>
                             <strong>Используемые методы:</strong><br/>
-                            • product.getName() → "{product.getName()}"<br/>
+                            • product.getName() → &quot;{product.getName()}&quot;<br/>
                             • product.getPrice() → {product.getPrice()}<br/>
                             • product.isOnSale() → {product.isOnSale() ? 'true' : 'false'}<br/>
                             • product.calculateFinalPrice() → {product.calculateFinalPrice()}<br/>
                             • product.getDiscountInfo() → {JSON.stringify(discountInfo)}<br/>
-                            • formatter.format(price) → "{formatter.format(product.calculateFinalPrice())}"
+                            • formatter.format(price) → &quot;{formatter.format(product.calculateFinalPrice())}&quot;
                           </Typography>
                         </Box>
                       </Stack>
@@ -575,7 +575,7 @@ export default function OOPDemoPage() {
                   Примечание:
                 </Typography>
                 <Typography variant="body2" component="div" sx={{ pl: 2 }}>
-                  В клиентском компоненте (<code>"use client"</code>) нельзя напрямую использовать <code>ProductService</code> с Prisma, 
+                  В клиентском компоненте (<code>&quot;use client&quot;</code>) нельзя напрямую использовать <code>ProductService</code> с Prisma, 
                   так как Prisma работает только на сервере. Поэтому данные загружаются через API route <code>/api/products</code>, 
                   а затем преобразуются в объекты класса <code>Product</code> для демонстрации ООП принципов.
                 </Typography>

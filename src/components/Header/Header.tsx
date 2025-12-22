@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Box, Container, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack } from '@mui/material';
 import CatalogButton from '../GranitCatalogButton/GranitCatalogButton';
 import { ButtonHeader, HeaderMenuButton, TopHeaderBox } from './Header.Styles';
 import LogoGranitPrimary2Icon from '@/icons/LogoGranitPrimary2';

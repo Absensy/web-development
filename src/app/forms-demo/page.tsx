@@ -218,7 +218,14 @@ export default function FormsDemoPage() {
   const [regexInput, setRegexInput] = useState('');
   const [regexPattern, setRegexPattern] = useState('');
   const [regexFlags, setRegexFlags] = useState('g');
-  const [regexResults, setRegexResults] = useState<any>(null);
+  const [regexResults, setRegexResults] = useState<{
+    test: boolean;
+    exec: { match: string; index: number; input: string; groups: Record<string, string> | null; allMatches: RegExpExecArray } | null;
+    match: RegExpMatchArray | null;
+    search: number | null;
+    replace: string | null;
+    split: string[] | null;
+  } | null>(null);
 
   const testRegExp = () => {
     if (!regexPattern) {
@@ -228,7 +235,14 @@ export default function FormsDemoPage() {
 
     try {
       const regex = new RegExp(regexPattern, regexFlags);
-      const results: any = {
+      const results: {
+        test: boolean;
+        exec: { match: string; index: number; input: string; groups: Record<string, string> | null; allMatches: RegExpExecArray } | null;
+        match: RegExpMatchArray | null;
+        search: number | null;
+        replace: string | null;
+        split: string[] | null;
+      } = {
         test: regex.test(regexInput),
         exec: null,
         match: null,
@@ -267,8 +281,9 @@ export default function FormsDemoPage() {
       results.split = regexInput.split(regex);
 
       setRegexResults(results);
-    } catch (error: any) {
-      alert('Ошибка в регулярном выражении: ' + error.message);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Неизвестная ошибка';
+      alert('Ошибка в регулярном выражении: ' + errorMessage);
     }
   };
 
@@ -571,10 +586,10 @@ export default function FormsDemoPage() {
               Пример работы:
             </Typography>
             <Typography variant="body2" component="div" sx={{ mt: 1 }}>
-              <strong>1. Введите текст:</strong> "Мой email: test@example.com, телефон: +375 29 123-45-67, дата: 25.12.2024"<br/>
+              <strong>1. Введите текст:</strong> &quot;Мой email: test@example.com, телефон: +375 29 123-45-67, дата: 25.12.2024&quot;<br/>
               <strong>2. Введите регулярное выражение:</strong> <code>\d+</code> (для поиска всех цифр)<br/>
               <strong>3. Установите флаги:</strong> <code>g</code> (глобальный поиск)<br/>
-              <strong>4. Нажмите "Применить регулярное выражение"</strong><br/>
+              <strong>4. Нажмите &quot;Применить регулярное выражение&quot;</strong><br/>
               <strong>Результат:</strong> Найдутся все числа: 375, 29, 123, 45, 67, 25, 12, 2024
             </Typography>
           </Alert>
@@ -649,10 +664,10 @@ export default function FormsDemoPage() {
                       Пример 1: Поиск email адресов
                     </Typography>
                     <Typography variant="body2" component="div" sx={{ pl: 2, fontFamily: 'monospace', fontSize: '0.875rem' }}>
-                      <strong>Текст:</strong> "Свяжитесь: admin@site.com или support@mail.ru"<br/>
+                      <strong>Текст:</strong> &quot;Свяжитесь: admin@site.com или support@mail.ru&quot;<br/>
                       <strong>Регулярное выражение:</strong> <code>^[^\s@]+@[^\s@]+\.[^\s@]+$</code><br/>
                       <strong>Флаги:</strong> <code>g</code><br/>
-                      <strong>Результат:</strong> Найдет "admin@site.com" и "support@mail.ru"
+                      <strong>Результат:</strong> Найдет &quot;admin@site.com&quot; и &quot;support@mail.ru&quot;
                     </Typography>
                   </Box>
                   
@@ -661,10 +676,10 @@ export default function FormsDemoPage() {
                       Пример 2: Поиск телефонных номеров
                     </Typography>
                     <Typography variant="body2" component="div" sx={{ pl: 2, fontFamily: 'monospace', fontSize: '0.875rem' }}>
-                      <strong>Текст:</strong> "Позвоните: +375 29 123-45-67 или 375291234567"<br/>
+                      <strong>Текст:</strong> &quot;Позвоните: +375 29 123-45-67 или 375291234567&quot;<br/>
                       <strong>Регулярное выражение:</strong> <code>\+375\s?[0-9]{2}\s?[0-9]{3}[\s-]?[0-9]{2}[\s-]?[0-9]{2}</code><br/>
                       <strong>Флаги:</strong> <code>g</code><br/>
-                      <strong>Результат:</strong> Найдет "+375 29 123-45-67"
+                      <strong>Результат:</strong> Найдет &quot;+375 29 123-45-67&quot;
                     </Typography>
                   </Box>
                   
@@ -673,7 +688,7 @@ export default function FormsDemoPage() {
                       Пример 3: Поиск всех цифр
                     </Typography>
                     <Typography variant="body2" component="div" sx={{ pl: 2, fontFamily: 'monospace', fontSize: '0.875rem' }}>
-                      <strong>Текст:</strong> "В 2024 году было продано 1234 товара по цене 99.99"<br/>
+                      <strong>Текст:</strong> &quot;В 2024 году было продано 1234 товара по цене 99.99&quot;<br/>
                       <strong>Регулярное выражение:</strong> <code>\d+</code><br/>
                       <strong>Флаги:</strong> <code>g</code><br/>
                       <strong>Результат:</strong> Найдет все числа: 2024, 1234, 99, 99
@@ -685,10 +700,10 @@ export default function FormsDemoPage() {
                       Пример 4: Замена текста
                     </Typography>
                     <Typography variant="body2" component="div" sx={{ pl: 2, fontFamily: 'monospace', fontSize: '0.875rem' }}>
-                      <strong>Текст:</strong> "Мой пароль: Secret123"<br/>
+                      <strong>Текст:</strong> &quot;Мой пароль: Secret123&quot;<br/>
                       <strong>Регулярное выражение:</strong> <code>Secret\d+</code><br/>
                       <strong>Флаги:</strong> <code>g</code><br/>
-                      <strong>Результат replace():</strong> "Мой пароль: ***ЗАМЕНЕНО***"
+                      <strong>Результат replace():</strong> &quot;Мой пароль: ***ЗАМЕНЕНО***&quot;
                     </Typography>
                   </Box>
                   
@@ -697,10 +712,10 @@ export default function FormsDemoPage() {
                       Пример 5: Разбиение строки
                     </Typography>
                     <Typography variant="body2" component="div" sx={{ pl: 2, fontFamily: 'monospace', fontSize: '0.875rem' }}>
-                      <strong>Текст:</strong> "Яблоко,Груша,Банан,Апельсин"<br/>
+                      <strong>Текст:</strong> &quot;Яблоко,Груша,Банан,Апельсин&quot;<br/>
                       <strong>Регулярное выражение:</strong> <code>,</code><br/>
                       <strong>Флаги:</strong> <code>g</code><br/>
-                      <strong>Результат split():</strong> ["Яблоко", "Груша", "Банан", "Апельсин"]
+                      <strong>Результат split():</strong> [&quot;Яблоко&quot;, &quot;Груша&quot;, &quot;Банан&quot;, &quot;Апельсин&quot;]
                     </Typography>
                   </Box>
                 </Stack>
@@ -724,9 +739,9 @@ export default function FormsDemoPage() {
                       <Box>
                         <Typography variant="subtitle2">exec() - первое совпадение с подробной информацией:</Typography>
                         <Box sx={{ bgcolor: 'grey.50', p: 1, borderRadius: 1, fontFamily: 'monospace', fontSize: '0.875rem' }}>
-                          Совпадение: "{regexResults.exec.match}"<br />
+                          Совпадение: &quot;{regexResults.exec.match}&quot;<br />
                           Индекс: {regexResults.exec.index}<br />
-                          Входная строка: "{regexResults.exec.input}"
+                          Входная строка: &quot;{regexResults.exec.input}&quot;
                         </Box>
                       </Box>
                     )}

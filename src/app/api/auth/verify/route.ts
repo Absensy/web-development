@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
         { authenticated: true, admin: true },
         { status: 200 }
       );
-    } catch (jwtError) {
+    } catch {
       return NextResponse.json(
         { authenticated: false, error: 'Недействительный токен' },
         { status: 401 }

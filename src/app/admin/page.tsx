@@ -69,7 +69,7 @@ export default function AdminLogin() {
         if (response.ok) {
           router.push('/admin/dashboard');
         }
-      } catch (error) {
+      } catch {
         // Пользователь не авторизован, остаемся на странице логина
       }
     };
