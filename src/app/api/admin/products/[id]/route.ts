@@ -3,6 +3,12 @@ import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-static';
 
+// Для статического экспорта требуется generateStaticParams
+export async function generateStaticParams() {
+  // Возвращаем пустой массив, так как API routes не должны быть статическими
+  return [];
+}
+
 // GET - получить товар по ID
 export async function GET(
   request: NextRequest,
