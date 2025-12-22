@@ -4,6 +4,15 @@ import { prisma } from '@/lib/prisma'
 export const dynamic = 'force-static'
 
 export async function GET() {
+  // Для статического экспорта возвращаем пустые данные, если DATABASE_URL не установлен
+  if (!process.env.DATABASE_URL) {
+    return NextResponse.json({
+      materials: [],
+      productionTimes: [],
+      priceRanges: []
+    });
+  }
+
   try {
     // Получаем все материалы из активных продуктов
     const products = await prisma.product.findMany({
@@ -82,9 +91,11 @@ export async function GET() {
     })
   } catch (error) {
     console.error('Error fetching filter data:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch filter data' },
-      { status: 500 }
-    )
+    // Возвращаем пустые данные вместо ошибки для статического экспорта
+    return NextResponse.json({
+      materials: [],
+      productionTimes: [],
+      priceRanges: []
+    })
   }
 }

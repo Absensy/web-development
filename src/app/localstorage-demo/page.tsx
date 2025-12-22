@@ -28,6 +28,7 @@ export default function LocalStorageDemoPage() {
 
   // Загрузка данных из Local Storage при монтировании
   useEffect(() => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     const loadedData = localStorage.getItem(STORAGE_KEY);
     if (loadedData) {
       try {
@@ -47,6 +48,7 @@ export default function LocalStorageDemoPage() {
   };
 
   const handleSave = () => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     if (!formData.fullName || !formData.email) {
       setMessage({ type: 'error', text: 'Заполните обязательные поля (ФИО и Email)' });
       return;
@@ -63,6 +65,7 @@ export default function LocalStorageDemoPage() {
   };
 
   const handleLoad = () => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     try {
       const loadedData = localStorage.getItem(STORAGE_KEY);
       if (loadedData) {
@@ -80,6 +83,7 @@ export default function LocalStorageDemoPage() {
   };
 
   const handleClear = () => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     try {
       localStorage.removeItem(STORAGE_KEY);
       setFormData({
@@ -99,6 +103,7 @@ export default function LocalStorageDemoPage() {
 
   // Получение всех данных из Local Storage для отображения
   const getAllLocalStorageData = () => {
+    if (typeof window === 'undefined') return {}; // Проверка на клиентскую сторону
     const allData: Record<string, string> = {};
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
