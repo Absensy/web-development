@@ -14,13 +14,13 @@ export interface ICategoryService {
 // Класс-сервис для работы с категориями (Инкапсуляция бизнес-логики)
 export class CategoryService implements ICategoryService {
   // Приватный метод для конвертации данных Prisma в объект Category
-  private convertToCategory(data: any): Category {
+  private convertToCategory(data: Record<string, unknown>): Category {
     // Преобразуем Date в строки для соответствия CategoryType
     const categoryData: Partial<CategoryType> = {
       ...data,
-      created_at: data.created_at instanceof Date ? data.created_at.toISOString() : data.created_at,
-      updated_at: data.updated_at instanceof Date ? data.updated_at.toISOString() : data.updated_at,
-    };
+      created_at: data.created_at instanceof Date ? data.created_at.toISOString() : (data.created_at as string | undefined),
+      updated_at: data.updated_at instanceof Date ? data.updated_at.toISOString() : (data.updated_at as string | undefined),
+    } as Partial<CategoryType>;
     return new Category(categoryData);
   }
 
@@ -34,7 +34,7 @@ export class CategoryService implements ICategoryService {
         orderBy: { created_at: 'desc' }
       });
 
-      return categories.map(category => this.convertToCategory(category));
+      return categories.map((category: Record<string, unknown>) => this.convertToCategory(category));
     } catch (error) {
       console.error('Error fetching categories:', error);
       throw new Error('Не удалось получить список категорий');

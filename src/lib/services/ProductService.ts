@@ -14,13 +14,13 @@ export interface IProductService {
 // Класс-сервис для работы с продуктами (Инкапсуляция бизнес-логики)
 export class ProductService implements IProductService {
   // Приватный метод для конвертации данных Prisma в объект Product
-  private convertToProduct(data: any): Product {
+  private convertToProduct(data: Record<string, unknown>): Product {
     // Преобразуем Date в строки для соответствия ProductType
     const productData: Partial<ProductType> = {
       ...data,
-      created_at: data.created_at instanceof Date ? data.created_at.toISOString() : data.created_at,
-      updated_at: data.updated_at instanceof Date ? data.updated_at.toISOString() : data.updated_at,
-    };
+      created_at: data.created_at instanceof Date ? data.created_at.toISOString() : (data.created_at as string | undefined),
+      updated_at: data.updated_at instanceof Date ? data.updated_at.toISOString() : (data.updated_at as string | undefined),
+    } as Partial<ProductType>;
     return new Product(productData);
   }
 
@@ -42,7 +42,7 @@ export class ProductService implements IProductService {
         orderBy: { created_at: 'desc' }
       });
 
-      return products.map(product => this.convertToProduct(product));
+      return products.map((product: Record<string, unknown>) => this.convertToProduct(product));
     } catch (error) {
       console.error('Error fetching products:', error);
       throw new Error('Не удалось получить список товаров');
@@ -125,17 +125,25 @@ export class ProductService implements IProductService {
         throw new Error('Обновленные данные товара не прошли валидацию');
       }
 
-      // Сохраняем в БД
-      const { id: _, created_at: __, updated_at: ___, category, ...updateData } = productData;
+      // Сохраняем в БД (исключаем поля, которые не должны обновляться)
+      const updateData: Omit<Partial<ProductType>, 'id' | 'created_at' | 'updated_at' | 'category'> = {
+        name: productData.name,
+        short_description: productData.short_description,
+        full_description: productData.full_description,
+        materials: productData.materials,
+        production_time: productData.production_time,
+        image: productData.image,
+        is_new: productData.is_new,
+        is_popular: productData.is_popular,
+        is_active: productData.is_active,
+        price: productData.price ? Number(productData.price) : undefined,
+        discount: productData.discount ? Number(productData.discount) : undefined,
+        discounted_price: productData.discounted_price ? Number(productData.discounted_price) : undefined,
+        category_id: productData.category_id ? parseInt(String(productData.category_id)) : undefined
+      };
       const updated = await prisma.product.update({
         where: { id },
-        data: {
-          ...updateData,
-          price: productData.price ? Number(productData.price) : undefined,
-          discount: productData.discount ? Number(productData.discount) : undefined,
-          discounted_price: productData.discounted_price ? Number(productData.discounted_price) : undefined,
-          category_id: productData.category_id ? parseInt(String(productData.category_id)) : undefined
-        }
+        data: updateData
       });
 
       return this.convertToProduct(updated);
@@ -171,7 +179,7 @@ export class ProductService implements IProductService {
         orderBy: { created_at: 'desc' }
       });
 
-      return products.map(product => this.convertToProduct(product));
+      return products.map((product: Record<string, unknown>) => this.convertToProduct(product));
     } catch (error) {
       console.error('Error fetching popular products:', error);
       throw new Error('Не удалось получить популярные товары');
@@ -189,7 +197,7 @@ export class ProductService implements IProductService {
         orderBy: { created_at: 'desc' }
       });
 
-      return products.map(product => this.convertToProduct(product));
+      return products.map((product: Record<string, unknown>) => this.convertToProduct(product));
     } catch (error) {
       console.error('Error fetching new products:', error);
       throw new Error('Не удалось получить новые товары');
