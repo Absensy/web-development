@@ -6,9 +6,8 @@ export {
   PriceFormatterFactory 
 } from './PriceFormatter';
 
+export type { IValidator, ValidationResult } from './ProductValidator';
 export {
-  IValidator,
-  ValidationResult,
   BaseValidator,
   ProductValidator,
   CategoryValidator

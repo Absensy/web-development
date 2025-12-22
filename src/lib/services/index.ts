@@ -1,4 +1,6 @@
 // Экспорт всех сервисов
-export { ProductService, IProductService } from './ProductService';
-export { CategoryService, ICategoryService } from './CategoryService';
+export { ProductService } from './ProductService';
+export type { IProductService } from './ProductService';
+export { CategoryService } from './CategoryService';
+export type { ICategoryService } from './CategoryService';
 
