@@ -26,6 +26,7 @@ export default function CookieDemoPage() {
 
   // Функция для установки cookie
   const setCookie = (name: string, value: string, days: number = 7) => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires.toUTCString()};path=/`;
@@ -33,6 +34,7 @@ export default function CookieDemoPage() {
 
   // Функция для получения cookie
   const getCookie = (name: string): string | null => {
+    if (typeof window === 'undefined') return null; // Проверка на клиентскую сторону
     const nameEQ = name + '=';
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
@@ -47,11 +49,13 @@ export default function CookieDemoPage() {
 
   // Функция для удаления cookie
   const deleteCookie = (name: string) => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
   };
 
   // Загрузка данных из cookie при монтировании
   useEffect(() => {
+    if (typeof window === 'undefined') return; // Проверка на клиентскую сторону
     const loadedData: FormData = {
       fullName: getCookie('fullName') || '',
       email: getCookie('email') || '',
@@ -262,7 +266,7 @@ export default function CookieDemoPage() {
           Информация о Cookie
         </Typography>
         <Typography variant="body2" component="pre" sx={{ mt: 1, whiteSpace: 'pre-wrap' }}>
-          {document.cookie || 'Cookie пусты'}
+          {typeof window !== 'undefined' ? (document.cookie || 'Cookie пусты') : 'Cookie пусты'}
         </Typography>
       </Paper>
     </Box>
