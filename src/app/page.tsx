@@ -8,6 +8,7 @@ import GranitContacts from '@/components/GranitContacts/GranitContacts';
 export default function Home() {
   return (
     <Box>
+      
       <Box id="catalog">
         <GranitCategoriesCard />
       </Box>

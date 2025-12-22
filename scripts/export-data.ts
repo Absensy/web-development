@@ -2,9 +2,16 @@ import { PrismaClient } from '@prisma/client';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 
-const prisma = new PrismaClient();
-
 async function exportData() {
+  // Проверяем наличие DATABASE_URL
+  if (!process.env.DATABASE_URL) {
+    console.log('⚠️ DATABASE_URL не установлен. Пропускаю экспорт данных.');
+    console.log('💡 Используйте существующие JSON файлы из public/data/');
+    return;
+  }
+
+  const prisma = new PrismaClient();
+
   try {
     console.log('Начинаю экспорт данных...');
 

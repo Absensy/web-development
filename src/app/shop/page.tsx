@@ -29,11 +29,30 @@ export default function ShopPage() {
     fetch('/data/products.json')
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data.products);
+        // Поддержка разных форматов: массив или объект с полем products
+        const rawProducts = Array.isArray(data) ? data : (data.products || []);
+        
+        // Преобразуем данные из JSON в формат компонента
+        const productsData: Product[] = rawProducts.map((item: any) => ({
+          id: item.id,
+          name: item.name,
+          subtext: item.short_description || item.subtext || '',
+          price: item.discounted_price || item.price,
+          oldPrice: item.discount ? item.price : undefined,
+          discount: item.discount,
+          image: item.image || '/images/default.jpg',
+          category: item.category?.name || item.category || '',
+          description: item.full_description || item.description || '',
+          materials: item.materials || '',
+          productionTime: item.production_time || item.productionTime || '',
+        }));
+        
+        setProducts(productsData);
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error loading products:', error);
+        setProducts([]);
         setLoading(false);
       });
   }, []);
@@ -73,8 +92,11 @@ export default function ShopPage() {
 
       {/* Сетка товаров */}
       <Box p={4} pt={2}>
-        <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(280px, 1fr))" gap="20px" justifyContent="center">
-          {products.map((product) => {
+        {products.length === 0 ? (
+          <Typography>Товары не найдены</Typography>
+        ) : (
+          <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(280px, 1fr))" gap="20px" justifyContent="center">
+            {products.map((product) => {
             const finalPrice = product.discount && product.oldPrice
               ? product.oldPrice * (1 - product.discount / 100)
               : product.price;
@@ -128,7 +150,8 @@ export default function ShopPage() {
               </Box>
             );
           })}
-        </Box>
+          </Box>
+        )}
       </Box>
     </Box>
   );

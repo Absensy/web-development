@@ -34,8 +34,9 @@ jobs:
       - name: Setup Prisma
         run: npx prisma generate
 
-      - name: Export data
-        run: npm run db:export
+      - name: Export data (optional)
+        run: npm run db:export || echo "⚠️ Export skipped - using existing JSON files"
+        continue-on-error: true
 
       - name: Build
         run: npm run build
