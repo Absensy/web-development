@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export const dynamic = 'force-static';
-
 export function generateStaticParams() {
   return [];
 }
+
+export const dynamic = 'force-static';
 
 // GET - получить категорию по ID
 export async function GET(
