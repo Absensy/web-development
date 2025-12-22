@@ -2,9 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 // Для статического экспорта требуется generateStaticParams
-export function generateStaticParams() {
-  // Возвращаем пустой массив, так как API routes не должны быть статическими
-  // Next.js требует эту функцию для динамических routes при статическом экспорте
+// Функция должна быть экспортирована до других экспортов
+export async function generateStaticParams() {
   return [];
 }
 

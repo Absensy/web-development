@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
   // Опция для статического экспорта (для GitHub Pages)
   output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
   trailingSlash: process.env.STATIC_EXPORT === 'true',
+  // Исключаем динамические API routes из статического экспорта
+  ...(process.env.STATIC_EXPORT === 'true' && {
+    skipTrailingSlashRedirect: true,
+  }),
 };
 
 export default nextConfig;
