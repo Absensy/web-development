@@ -14,8 +14,14 @@ export interface ICategoryService {
 // Класс-сервис для работы с категориями (Инкапсуляция бизнес-логики)
 export class CategoryService implements ICategoryService {
   // Приватный метод для конвертации данных Prisma в объект Category
-  private convertToCategory(data: CategoryType): Category {
-    return new Category(data);
+  private convertToCategory(data: any): Category {
+    // Преобразуем Date в строки для соответствия CategoryType
+    const categoryData: Partial<CategoryType> = {
+      ...data,
+      created_at: data.created_at instanceof Date ? data.created_at.toISOString() : data.created_at,
+      updated_at: data.updated_at instanceof Date ? data.updated_at.toISOString() : data.updated_at,
+    };
+    return new Category(categoryData);
   }
 
   // Получить все категории
@@ -28,7 +34,7 @@ export class CategoryService implements ICategoryService {
         orderBy: { created_at: 'desc' }
       });
 
-      return categories.map(category => this.convertToCategory(category as CategoryType));
+      return categories.map(category => this.convertToCategory(category));
     } catch (error) {
       console.error('Error fetching categories:', error);
       throw new Error('Не удалось получить список категорий');
@@ -46,7 +52,7 @@ export class CategoryService implements ICategoryService {
         return null;
       }
 
-      return this.convertToCategory(category as CategoryType);
+      return this.convertToCategory(category);
     } catch (error) {
       console.error('Error fetching category:', error);
       throw new Error('Не удалось получить категорию');
@@ -75,7 +81,7 @@ export class CategoryService implements ICategoryService {
         }
       });
 
-      return this.convertToCategory(created as CategoryType);
+      return this.convertToCategory(created);
     } catch (error) {
       console.error('Error creating category:', error);
       throw error instanceof Error ? error : new Error('Не удалось создать категорию');
@@ -110,7 +116,7 @@ export class CategoryService implements ICategoryService {
         }
       });
 
-      return this.convertToCategory(updated as CategoryType);
+      return this.convertToCategory(updated);
     } catch (error) {
       console.error('Error updating category:', error);
       throw error instanceof Error ? error : new Error('Не удалось обновить категорию');

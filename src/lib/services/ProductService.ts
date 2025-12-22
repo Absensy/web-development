@@ -14,8 +14,14 @@ export interface IProductService {
 // Класс-сервис для работы с продуктами (Инкапсуляция бизнес-логики)
 export class ProductService implements IProductService {
   // Приватный метод для конвертации данных Prisma в объект Product
-  private convertToProduct(data: ProductType): Product {
-    return new Product(data);
+  private convertToProduct(data: any): Product {
+    // Преобразуем Date в строки для соответствия ProductType
+    const productData: Partial<ProductType> = {
+      ...data,
+      created_at: data.created_at instanceof Date ? data.created_at.toISOString() : data.created_at,
+      updated_at: data.updated_at instanceof Date ? data.updated_at.toISOString() : data.updated_at,
+    };
+    return new Product(productData);
   }
 
   // Получить все продукты
@@ -36,7 +42,7 @@ export class ProductService implements IProductService {
         orderBy: { created_at: 'desc' }
       });
 
-      return products.map(product => this.convertToProduct(product as ProductType));
+      return products.map(product => this.convertToProduct(product));
     } catch (error) {
       console.error('Error fetching products:', error);
       throw new Error('Не удалось получить список товаров');
@@ -57,7 +63,7 @@ export class ProductService implements IProductService {
         return null;
       }
 
-      return this.convertToProduct(product as ProductType);
+      return this.convertToProduct(product);
     } catch (error) {
       console.error('Error fetching product:', error);
       throw new Error('Не удалось получить товар');
@@ -94,7 +100,7 @@ export class ProductService implements IProductService {
         }
       });
 
-      return this.convertToProduct(created as ProductType);
+      return this.convertToProduct(created);
     } catch (error) {
       console.error('Error creating product:', error);
       throw error instanceof Error ? error : new Error('Не удалось создать товар');
@@ -120,10 +126,11 @@ export class ProductService implements IProductService {
       }
 
       // Сохраняем в БД
+      const { id: _, created_at: __, updated_at: ___, category, ...updateData } = productData;
       const updated = await prisma.product.update({
         where: { id },
         data: {
-          ...productData,
+          ...updateData,
           price: productData.price ? Number(productData.price) : undefined,
           discount: productData.discount ? Number(productData.discount) : undefined,
           discounted_price: productData.discounted_price ? Number(productData.discounted_price) : undefined,
@@ -131,7 +138,7 @@ export class ProductService implements IProductService {
         }
       });
 
-      return this.convertToProduct(updated as ProductType);
+      return this.convertToProduct(updated);
     } catch (error) {
       console.error('Error updating product:', error);
       throw error instanceof Error ? error : new Error('Не удалось обновить товар');
@@ -164,7 +171,7 @@ export class ProductService implements IProductService {
         orderBy: { created_at: 'desc' }
       });
 
-      return products.map(product => this.convertToProduct(product as ProductType));
+      return products.map(product => this.convertToProduct(product));
     } catch (error) {
       console.error('Error fetching popular products:', error);
       throw new Error('Не удалось получить популярные товары');
@@ -182,7 +189,7 @@ export class ProductService implements IProductService {
         orderBy: { created_at: 'desc' }
       });
 
-      return products.map(product => this.convertToProduct(product as ProductType));
+      return products.map(product => this.convertToProduct(product));
     } catch (error) {
       console.error('Error fetching new products:', error);
       throw new Error('Не удалось получить новые товары');
