@@ -35,6 +35,30 @@ function checkIsStaticMode(): boolean {
 let cachedIsStatic: boolean | null = null;
 
 /**
+ * Получить basePath из текущего URL
+ */
+function getBasePathFromUrl(): string {
+  if (typeof window === 'undefined') {
+    return '';
+  }
+  
+  const pathname = window.location.pathname;
+  
+  // Если это GitHub Pages (github.io), извлекаем basePath
+  if (window.location.hostname.includes('github.io')) {
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length > 0 && parts[0] !== '') {
+      const firstPart = parts[0];
+      if (!firstPart.includes('.') && firstPart !== 'api') {
+        return `/${firstPart}`;
+      }
+    }
+  }
+  
+  return '';
+}
+
+/**
  * Маппинг API endpoints на JSON файлы
  */
 const apiToJsonMap: Record<string, string> = {
@@ -52,6 +76,8 @@ const apiToJsonMap: Record<string, string> = {
  * Получить JSON путь для API endpoint
  */
 function getJsonPath(apiPath: string): string | null {
+  const basePath = getBasePathFromUrl();
+  
   // Для фильтров создаем динамически из категорий и продуктов
   if (apiPath === '/api/filters') {
     return null; // Будет обработан отдельно
@@ -59,10 +85,11 @@ function getJsonPath(apiPath: string): string | null {
   
   // Для контента нужно извлекать конкретную секцию
   if (apiPath.startsWith('/api/content/')) {
-    return '/data/content.json';
+    return `${basePath}/data/content.json`;
   }
   
-  return apiToJsonMap[apiPath] || null;
+  const jsonPath = apiToJsonMap[apiPath];
+  return jsonPath ? `${basePath}${jsonPath}` : null;
 }
 
 /**
@@ -104,10 +131,11 @@ interface FiltersData {
  * Создать данные фильтров из категорий и продуктов
  */
 async function createFiltersData(): Promise<FiltersData> {
+  const basePath = getBasePathFromUrl();
   try {
     const [categories, products] = await Promise.all([
-      loadFromJson('/data/categories.json') as Promise<Category[]>,
-      loadFromJson('/data/products.json') as Promise<Product[]>
+      loadFromJson(`${basePath}/data/categories.json`) as Promise<Category[]>,
+      loadFromJson(`${basePath}/data/products.json`) as Promise<Product[]>
     ]);
     
     // Извлекаем уникальные материалы из продуктов
@@ -241,9 +269,10 @@ export async function fetchWithFallback(
   
   // Специальная обработка для фильтров
   if (apiPath === '/api/filters') {
+    const basePath = getBasePathFromUrl();
     // Сначала пробуем загрузить готовый файл
     try {
-      const filtersData = await loadFromJson('/data/filters.json');
+      const filtersData = await loadFromJson(`${basePath}/data/filters.json`);
       return new Response(JSON.stringify(filtersData), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }

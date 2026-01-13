@@ -46,6 +46,7 @@ jobs:
         env:
           NODE_ENV: production
           STATIC_EXPORT: true
+          GITHUB_REPOSITORY: ${{ github.repository }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

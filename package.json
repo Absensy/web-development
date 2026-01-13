@@ -14,6 +14,7 @@
     "db:export": "npx tsx scripts/export-data.ts",
     "export": "npm run db:export && cross-env STATIC_EXPORT=true next build",
     "test:github": "tsx scripts/test-github-ready.ts",
+    "check": "tsx scripts/check-build.ts",
     "exclude-dynamic-routes": "node scripts/exclude-dynamic-routes.js"
   },
   "dependencies": {
