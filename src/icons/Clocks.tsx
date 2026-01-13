@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const ClocksIcon = ({size = 16, ...props}:CustomSVGProps) => {
+    const imagePath = "/images/clocks.svg";
     return (
         <svg
             viewBox='0 0 17 17'
@@ -10,7 +11,8 @@ const ClocksIcon = ({size = 16, ...props}:CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/clocks.svg"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='16'
                 height='16'
             />            

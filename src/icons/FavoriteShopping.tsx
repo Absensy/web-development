@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const FavoriteShoppingIcon = ({size = 25, ...props}:CustomSVGProps) => {
+    const imagePath = "/images/FavoriteShopping.svg";
     return (
         <svg
             viewBox='0 0 24 22'
@@ -10,7 +11,8 @@ const FavoriteShoppingIcon = ({size = 25, ...props}:CustomSVGProps) => {
             {...props}
         >
             <image
-                href="/images/FavoriteShopping.svg"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='24'
                 height='21'
             />

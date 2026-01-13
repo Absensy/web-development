@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const GreenCheckIcon = ({size = 19, ...props}:CustomSVGProps) => {
+    const imagePath = "/images/greenCheck.svg";
     return (
         <svg
             viewBox='0 0 18 18'
@@ -10,7 +11,8 @@ const GreenCheckIcon = ({size = 19, ...props}:CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/greenCheck.svg"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='18'
                 height='18'
             />            

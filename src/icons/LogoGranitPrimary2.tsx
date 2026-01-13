@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const LogoGranitPrimary2Icon = ({ size = 32, ...props }: CustomSVGProps) => {
+    const imagePath = "/images/LogoGranitPrimary2.svg";
     return (
         <svg
             viewBox='0 0 31 32'
@@ -10,7 +11,8 @@ const LogoGranitPrimary2Icon = ({ size = 32, ...props }: CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/LogoGranitPrimary2.svg"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='31'
                 height='32'
             />

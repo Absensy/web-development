@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const MenuIcon = ({size = 39, ...props}:CustomSVGProps) => {
+    const imagePath = "/images/MenuIcon.svg";
     return (
         <svg
             viewBox='0 0 40 40'
@@ -10,7 +11,8 @@ const MenuIcon = ({size = 39, ...props}:CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/MenuIcon.svg"
+                href={imagePath}
+xlinkHref={imagePath}
                 width='39'
                 height='39'
             />            

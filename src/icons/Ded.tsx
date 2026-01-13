@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const DedIcon= ({...props}:CustomSVGProps) => {
+    const imagePath = "/images/ded.png";
     return (
         <svg
             viewBox='0 0 400 384'
@@ -10,7 +11,8 @@ const DedIcon= ({...props}:CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/ded.png"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='600'
                 height='384'
             />            

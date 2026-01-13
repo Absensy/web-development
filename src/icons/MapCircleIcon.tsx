@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const MapCircleIcon = ({size = 49, ...props}:CustomSVGProps) => {
+    const imagePath = "/images/MapCircleIcon.svg";
     return (
         <svg
             viewBox='0 0 48 48'
@@ -10,7 +11,8 @@ const MapCircleIcon = ({size = 49, ...props}:CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/MapCircleIcon.svg"
+                href={imagePath}
+xlinkHref={imagePath}
                 width='48'
                 height='48'
             />            

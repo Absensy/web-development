@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const ArrowDownIcon = ({ size = 21, ...props }: CustomSVGProps) => {
+    const imagePath = "/images/arrowDown.svg";
     return (
         <svg
             viewBox='0 0 20 20'
@@ -10,7 +11,8 @@ const ArrowDownIcon = ({ size = 21, ...props }: CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/arrowDown.svg"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='20'
                 height='20'
             />

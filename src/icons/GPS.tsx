@@ -2,6 +2,7 @@ import React from "react";
 import CustomSVGProps from "@/types/CustomSVGProps";
 
 const GpsIcon = ({size = 17, ...props}:CustomSVGProps) => {
+    const imagePath = "/images/gps.svg";
     return (
         <svg
             viewBox='0 0 12 16'
@@ -10,7 +11,8 @@ const GpsIcon = ({size = 17, ...props}:CustomSVGProps) => {
             {...props}
         >
             <image 
-                href="/images/gps.svg"
+                href={imagePath}
+                xlinkHref={imagePath}
                 width='12'
                 height='16'
             />            
