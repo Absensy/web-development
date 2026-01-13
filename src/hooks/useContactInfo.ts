@@ -22,7 +22,8 @@ export const useContactInfo = () => {
     const fetchContactInfo = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/contact')
+        const { fetchWithFallback } = await import('@/lib/utils/api-fallback')
+        const response = await fetchWithFallback('/api/contact')
         if (!response.ok) {
           throw new Error('Failed to fetch contact info')
         }

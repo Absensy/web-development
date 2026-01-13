@@ -71,7 +71,8 @@ export const useFilters = (initialCategoryId?: number) => {
     const fetchFilterData = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/filters')
+        const { fetchWithFallback } = await import('@/lib/utils/api-fallback')
+        const response = await fetchWithFallback('/api/filters')
         
         if (!response.ok) {
           throw new Error('Failed to fetch filter data')

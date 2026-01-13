@@ -10,8 +10,8 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    // Для локального хостинга разрешаем неоптимизированные изображения
-    unoptimized: process.env.NODE_ENV === 'production' && process.env.STATIC_EXPORT === 'true',
+    // Для статического экспорта разрешаем неоптимизированные изображения
+    unoptimized: process.env.STATIC_EXPORT === 'true',
   },
   // Опция для статического экспорта (для GitHub Pages)
   output: process.env.STATIC_EXPORT === 'true' ? 'export' : undefined,
@@ -20,6 +20,8 @@ const nextConfig: NextConfig = {
   ...(process.env.STATIC_EXPORT === 'true' && {
     skipTrailingSlashRedirect: true,
   }),
+  // Базовый путь для GitHub Pages будет автоматически настроен GitHub Actions
+  // Не устанавливаем basePath здесь, чтобы не ломать локальную разработку
 };
 
 export default nextConfig;

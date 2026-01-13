@@ -44,7 +44,8 @@ export function useAboutCompanyContent() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/content/about-company');
+      const { fetchWithFallback } = await import('@/lib/utils/api-fallback');
+      const response = await fetchWithFallback('/api/content/about-company');
       
       if (!response.ok) {
         throw new Error('Failed to fetch content');
@@ -93,7 +94,8 @@ export function useFooterContent() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/content/footer');
+      const { fetchWithFallback } = await import('@/lib/utils/api-fallback');
+      const response = await fetchWithFallback('/api/content/footer');
       
       if (!response.ok) {
         throw new Error('Failed to fetch footer content');
@@ -151,7 +153,8 @@ export function useOurServicesContent() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/content/our-services');
+      const { fetchWithFallback } = await import('@/lib/utils/api-fallback');
+      const response = await fetchWithFallback('/api/content/our-services');
       
       if (!response.ok) {
         throw new Error('Failed to fetch our services content');

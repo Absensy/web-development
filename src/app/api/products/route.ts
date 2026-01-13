@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+// Для статического экспорта API routes автоматически исключаются Next.js
 export const dynamic = 'force-static';
 
 export async function GET(request: NextRequest) {

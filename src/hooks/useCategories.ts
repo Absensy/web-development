@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Category } from '@/lib/db';
+import { fetchWithFallback } from '@/lib/utils/api-fallback';
 
 export const useCategories = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -12,7 +13,7 @@ export const useCategories = () => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/categories');
+        const response = await fetchWithFallback('/api/categories');
         if (!response.ok) {
           throw new Error('Failed to fetch categories');
         }

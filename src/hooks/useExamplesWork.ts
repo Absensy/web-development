@@ -23,7 +23,8 @@ export const useExamplesWork = () => {
     const fetchExamplesWork = async () => {
       try {
         setLoading(true)
-        const response = await fetch('/api/examples-work')
+        const { fetchWithFallback } = await import('@/lib/utils/api-fallback')
+        const response = await fetchWithFallback('/api/examples-work')
         
         if (!response.ok) {
           throw new Error('Failed to fetch examples work')

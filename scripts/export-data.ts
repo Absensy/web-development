@@ -86,6 +86,71 @@ async function exportData() {
     );
     console.log(`✓ Экспортировано ${content.length} секций контента`);
 
+    // Экспортируем данные для фильтров
+    const allProducts = await prisma.product.findMany({
+      where: { is_active: true },
+      select: {
+        materials: true,
+        price: true,
+      }
+    });
+    
+    // Извлекаем уникальные материалы из массива materials каждого продукта
+    const allMaterials = new Set<string>();
+    allProducts.forEach((p: { materials: string | null }) => {
+      if (p.materials) {
+        // materials может быть строкой или JSON массивом
+        try {
+          const parsed = typeof p.materials === 'string' ? JSON.parse(p.materials) : p.materials;
+          if (Array.isArray(parsed)) {
+            parsed.forEach((m: string) => {
+              if (m && m.trim() !== '') {
+                allMaterials.add(m.trim());
+              }
+            });
+          } else if (typeof parsed === 'string' && parsed.trim() !== '') {
+            allMaterials.add(parsed.trim());
+          }
+        } catch {
+          // Если не JSON, используем как строку
+          if (typeof p.materials === 'string' && p.materials.trim() !== '') {
+            allMaterials.add(p.materials.trim());
+          }
+        }
+      }
+    });
+    const materials = Array.from(allMaterials).sort();
+    
+    const prices = allProducts
+      .map((p: { price: number | null }) => p.price)
+      .filter((p: number | null): p is number => p != null && !isNaN(Number(p)))
+      .map((p: number) => Number(p));
+    
+    const minPrice = prices.length > 0 ? Math.min(...prices) : 0;
+    const maxPrice = prices.length > 0 ? Math.max(...prices) : 100000;
+    
+    const filtersData = {
+      categories: categories.map((cat: { id: number; name: string }) => ({ id: cat.id, name: cat.name })),
+      materials,
+      priceRange: {
+        min: minPrice,
+        max: maxPrice
+      },
+      sortOptions: [
+        { value: 'price-asc', label: 'По возрастанию цены' },
+        { value: 'price-desc', label: 'По убыванию цены' },
+        { value: 'name-asc', label: 'По имени (А-Я)' },
+        { value: 'name-desc', label: 'По имени (Я-А)' }
+      ]
+    };
+    
+    await writeFile(
+      join(dataDir, 'filters.json'),
+      JSON.stringify(filtersData, null, 2),
+      'utf-8'
+    );
+    console.log('✓ Экспортированы данные фильтров');
+
     console.log('\n✅ Экспорт данных завершен успешно!');
   } catch (error) {
     console.error('❌ Ошибка при экспорте данных:', error);

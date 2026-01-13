@@ -33,16 +33,16 @@ jobs:
 
       - name: Setup Prisma
         run: npx prisma generate
-
-      - name: Export data (optional)
-        run: npm run db:export || echo "⚠️ Export skipped - using existing JSON files"
         continue-on-error: true
 
-      - name: Exclude dynamic API routes
-        run: npm run exclude-dynamic-routes
+      - name: Export data to JSON
+        run: npm run db:export || echo "⚠️ Export skipped - using existing JSON files"
+        continue-on-error: true
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-      - name: Build
-        run: npm run build
+      - name: Build static site
+        run: STATIC_EXPORT=true npm run build:static
         env:
           NODE_ENV: production
           STATIC_EXPORT: true
