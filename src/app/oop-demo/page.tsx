@@ -341,8 +341,9 @@ export default function OOPDemoPage() {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        // Загружаем данные через API (так как Prisma работает только на сервере)
-        const response = await fetch('/api/products');
+        // Загружаем данные из JSON файла
+        const { fetchWithFallback } = await import('@/lib/utils/api-fallback');
+        const response = await fetchWithFallback('/api/products');
         if (!response.ok) {
           throw new Error('Не удалось загрузить продукты');
         }

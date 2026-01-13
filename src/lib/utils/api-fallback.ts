@@ -180,78 +180,103 @@ function extractContentSection(data: Record<string, unknown>, section: string): 
 
 /**
  * Fetch с автоматическим fallback на JSON файлы
+ * Для продуктов всегда приоритет у JSON файла
  */
 export async function fetchWithFallback(
   apiPath: string,
   options?: RequestInit
 ): Promise<Response> {
-  const isStatic = checkIsStaticMode();
-  
-  // Если это не статический экспорт или это POST/PUT/DELETE запрос, используем API
-  if (!isStatic || (options?.method && options.method !== 'GET')) {
-    try {
-      const response = await fetch(apiPath, options);
-      if (response.ok) {
-        return response;
-      }
-    } catch (error) {
-      // Если API недоступен, пробуем JSON fallback даже в dev режиме
-      console.warn(`API request failed for ${apiPath}, trying JSON fallback:`, error);
-    }
+  // Для POST/PUT/DELETE запросов используем только API
+  if (options?.method && options.method !== 'GET') {
+    return fetch(apiPath, options);
   }
+  
+  // Для продуктов всегда приоритет у JSON файла
+  const isProductsRequest = apiPath.startsWith('/api/products') && !apiPath.includes('/admin');
   
   // Используем JSON fallback
   const jsonPath = getJsonPath(apiPath);
   
-  if (!jsonPath) {
-    // Специальная обработка для фильтров
-    if (apiPath === '/api/filters') {
-      // Сначала пробуем загрузить готовый файл
+  // Если есть JSON файл, пробуем загрузить его первым
+  if (jsonPath) {
+    try {
+      const data = await loadFromJson(jsonPath);
+      
+      // Для контента извлекаем нужную секцию
+      let responseData = data;
+      if (apiPath.startsWith('/api/content/')) {
+        if (data && typeof data === 'object' && !Array.isArray(data)) {
+          responseData = extractContentSection(data as Record<string, unknown>, apiPath);
+          if (!responseData) {
+            throw new Error(`Section not found in content.json for ${apiPath}`);
+          }
+        } else {
+          throw new Error(`Invalid content.json format for ${apiPath}`);
+        }
+      }
+      
+      // Для продуктов фильтруем по category_id, если указан
+      if (isProductsRequest && responseData && Array.isArray(responseData)) {
+        const urlParams = new URLSearchParams(apiPath.split('?')[1] || '');
+        const categoryId = urlParams.get('category_id');
+        if (categoryId) {
+          responseData = (responseData as unknown[]).filter(
+            (p: unknown) => {
+              const product = p as { category_id?: number | null };
+              return product.category_id === Number(categoryId);
+            }
+          );
+        }
+      }
+      
+      return new Response(JSON.stringify(responseData), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    } catch (error) {
+      console.warn(`JSON file not found or invalid for ${apiPath}, trying API:`, error);
+      // Если JSON недоступен, пробуем API
+    }
+  }
+  
+  // Специальная обработка для фильтров
+  if (apiPath === '/api/filters') {
+    // Сначала пробуем загрузить готовый файл
+    try {
+      const filtersData = await loadFromJson('/data/filters.json');
+      return new Response(JSON.stringify(filtersData), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    } catch {
+      // Если файла нет, создаем динамически
       try {
-        const filtersData = await loadFromJson('/data/filters.json');
-        return new Response(JSON.stringify(filtersData), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      } catch {
-        // Если файла нет, создаем динамически
         const data = await createFiltersData();
         return new Response(JSON.stringify(data), {
           status: 200,
           headers: { 'Content-Type': 'application/json' }
         });
+      } catch {
+        // В крайнем случае пробуем API
       }
     }
-    
-    // Если нет маппинга, пробуем API
-    return fetch(apiPath, options);
   }
   
+  // Если нет JSON или он недоступен, пробуем API
   try {
-    const data = await loadFromJson(jsonPath);
-    
-    // Для контента извлекаем нужную секцию
-    let responseData = data;
-    if (apiPath.startsWith('/api/content/')) {
-      if (data && typeof data === 'object' && !Array.isArray(data)) {
-        responseData = extractContentSection(data as Record<string, unknown>, apiPath);
-        if (!responseData) {
-          throw new Error(`Section not found in content.json for ${apiPath}`);
-        }
-      } else {
-        throw new Error(`Invalid content.json format for ${apiPath}`);
-      }
+    const response = await fetch(apiPath, options);
+    if (response.ok) {
+      return response;
     }
-    
-    return new Response(JSON.stringify(responseData), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' }
-    });
   } catch (error) {
-    console.error(`JSON fallback failed for ${apiPath}:`, error);
-    // В крайнем случае пробуем API
-    return fetch(apiPath, options);
+    console.error(`API request failed for ${apiPath}:`, error);
   }
+  
+  // Если все не удалось, возвращаем ошибку
+  return new Response(JSON.stringify({ error: 'Failed to fetch data' }), {
+    status: 500,
+    headers: { 'Content-Type': 'application/json' }
+  });
 }
 
 /**

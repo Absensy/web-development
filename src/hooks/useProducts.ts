@@ -21,11 +21,8 @@ export const useProducts = (categoryId?: number) => {
         }
         
         const data = await response.json();
-        // Фильтруем по категории на клиенте, если нужно
-        const filteredData = categoryId 
-          ? data.filter((p: Product) => p.category_id === categoryId)
-          : data;
-        setProducts(filteredData);
+        // Данные уже отфильтрованы в fetchWithFallback, если указан category_id
+        setProducts(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
